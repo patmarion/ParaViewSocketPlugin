@@ -50,6 +50,8 @@ pqRemoteControl::pqRemoteControl(QWidget* parent, Qt::WindowFlags flags) : QDock
   this->setWidget(widget);
   this->setWindowTitle("Remote Control");
   this->connect(this->Internal->NewButton, SIGNAL(clicked()), SLOT(onNewClicked()));
+
+  this->onNewClicked();
 }
 
 pqRemoteControl::~pqRemoteControl()

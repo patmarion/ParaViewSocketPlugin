@@ -18,6 +18,16 @@ if(PARAVIEW_BUILD_QT_GUI)
   QT4_WRAP_CPP(MOC_SRCS pqRemoteControl.h pqSocketItem.h pqSocketHandler.h pqPythonSocketHandler.h)
   QT4_WRAP_UI(UI_SRCS pqRemoteControl.ui)
 
+  include_directories(webgl)
+  set(srcs
+    webgl/vtkWebGLDataSet.cxx
+    webgl/vtkWebGLExporter.cxx
+    webgl/vtkWebGLObject.cxx
+    webgl/vtkWebGLPolyData.cxx
+    webgl/vtkWebGLWidget.cxx
+    webgl/md5.cpp
+    )
+
   ADD_PARAVIEW_DOCK_WINDOW(
     OUTIFACES
     OUTSRCS
@@ -27,8 +37,10 @@ if(PARAVIEW_BUILD_QT_GUI)
   ADD_PARAVIEW_PLUGIN(pqRemoteControl "1.0"
                       REQUIRED_ON_CLIENT
                       GUI_INTERFACES ${OUTIFACES}
-                      GUI_SOURCES ${OUTSRCS} ${MOC_SRCS} ${UI_SRCS}
+                      GUI_SOURCES ${OUTSRCS} ${MOC_SRCS} ${UI_SRCS} ${srcs}
                                    pqRemoteControl.cxx
                                    pqSocketItem.cxx
                                    pqPythonSocketHandler.cxx)
+
+  target_link_libraries(pqRemoteControl pqApplicationComponents)
 endif()

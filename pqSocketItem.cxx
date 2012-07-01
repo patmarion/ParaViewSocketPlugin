@@ -84,6 +84,8 @@ pqSocketItem::pqSocketItem(QObject* parent) : QObject(parent)
   this->connect(this->Internal->StatusButton, SIGNAL(clicked()), SLOT(onStatusClicked()));
 
   this->onTypeChanged();
+
+  this->Internal->TypeCombo->setCurrentIndex(1);
 }
 
 //-----------------------------------------------------------------------------

@@ -44,9 +44,17 @@ public:
   pqPythonSocketHandler(QObject* parent);
   virtual ~pqPythonSocketHandler();
 
+public slots:
   virtual void onSocketOpened();
   virtual void onSocketClosed();
   virtual void onSocketReadReady();
+
+protected:
+
+  void initScene();
+  void sendSceneInfo();
+  void sendObjects();
+  void receiveCameraState();
 
 private:
   class pqInternal;
